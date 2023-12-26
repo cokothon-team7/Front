@@ -34,13 +34,23 @@ const Initpage = () => {
 			}}
 		>
 			<img src={puzzle} alt="전구이미지" style={{ height: "140px" }} />
-			<p style={{ fontSize: "40px", marginBottom: "120px" }}>PicPuzzle</p>
+			<p
+				style={{
+					fontSize: "40px",
+					marginBottom: "120px",
+					fontWeight: "bold",
+					fontFamily: "Ubuntu Mono, monospace",
+				}}
+			>
+				PicPuzzle
+			</p>
 			<button
 				style={{
 					width: "100%",
 					height: "40px",
 					backgroundColor: "#fff",
 					border: "none",
+					fontSize: "18px",
 					boxShadow: "2px 2px 2px 2px lightGray",
 				}}
 				onClick={goLogin}
@@ -53,6 +63,7 @@ const Initpage = () => {
 					height: "40px",
 					backgroundColor: "#fff",
 					border: "none",
+					fontSize: "18px",
 					boxShadow: "2px 2px 2px 2px lightGray",
 				}}
 				onClick={goSignup}

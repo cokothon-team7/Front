@@ -39,6 +39,7 @@ const Login = () => {
         backgroundColor: "#CBEDD5", // 배경색 지정
       }}
     >
+      <p style={{ fontSize: "26px", fontWeight: "bold" }}>로그인</p>
       <input
         onChange={(e) => setID(e.target.value)}
         value={ID}
@@ -48,6 +49,7 @@ const Login = () => {
           height: "40px",
           backgroundColor: "#fff",
           border: "none",
+          fontSize: "18px",
         }}
       />
       <input
@@ -60,6 +62,7 @@ const Login = () => {
           backgroundColor: "#fff",
           border: "none",
           marginBottom: "20px",
+          fontSize: "18px",
         }}
         type="password"
       />
@@ -73,6 +76,7 @@ const Login = () => {
           backgroundColor: "#fff",
           border: "none",
           boxShadow: "2px 2px 2px 2px lightGray",
+          fontSize: "18px",
         }}
       >
         Login
