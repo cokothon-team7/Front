@@ -18,7 +18,7 @@ export default function Main() {
 				flexWrap: "wrap",
 				margin: "0 auto",
 				overscrollBehaviorY: "contain",
-				backgroundColor: "#D9D9D9",
+				backgroundColor: "#fff",
 			}}
 		>
 			<Header />
@@ -26,25 +26,25 @@ export default function Main() {
 				style={{
 					display: "flex",
 					flexDirection: "row",
-					padding: "20px",
 				}}
 			>
 				<div
 					style={{
 						marginTop: "20px",
-						borderRadius: "20px",
-						backgroundColor: "#fff",
-						height: "91px",
 						display: "flex",
-						flexDirection: "column",
+						flexDirection: "row",
+						maxWidth: "600px",
+						minWidth: "320px",
+						flexWrap: "wrap",
 						justifyContent: "center",
 						alignItems: "center", // 수직 가운데 정렬을 위해 추가
 						textAlign: "center",
 					}}
 				>
-					<div style={{ display: "flex", flexWrap: "wrap" }}>
-						<div style={{ flex: "1 1 40%" }}></div>
-					</div>
+					<Box width={166} height={166} />
+					<Box width={166} height={166} />
+					<Box width={166} height={166} />
+					<Box width={166} height={166} />
 				</div>
 			</div>
 			<Footer />
