@@ -6,4 +6,7 @@ export const Box = styled.div`
   border-radius: 20px;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
   background-color: #fff;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 20px;
 `;

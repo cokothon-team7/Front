@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "../Components/Header/header";
 import * as style from "./createquiz.css";
 
-export default function createquiz() {
+const Createquiz = () => {
+	const [category, setCategory] = useState();
+	const [question, setQuestion] = useState();
 	return (
 		<div
 			style={{
@@ -36,7 +38,7 @@ export default function createquiz() {
 					}}
 				>
 					<p>문제의 카테고리를 입력해주세요.</p>
-					<input placeholder="카테고리 입력" style={{ width: "60%", margin: "0 auto" }} />
+					<input onChange={(e) => setCategory(e.target.value)} value={category} placeholder="카테고리 입력" style={{ width: "60%", margin: "0 auto" }} />
 				</div>
 				<div
 					style={{
@@ -52,7 +54,7 @@ export default function createquiz() {
 					}}
 				>
 					<p>문제의 힌트를 입력해주세요.</p>
-					<input placeholder="힌트 입력" style={{ width: "60%", margin: "0 auto" }} />
+					<input onChange={(e) => setQuestion(e.target.value)} value={question} placeholder="힌트 입력" style={{ width: "60%", margin: "0 auto" }} />
 				</div>
 				<div
 					style={{
@@ -68,9 +70,11 @@ export default function createquiz() {
 					}}
 				>
 					<p>이미지를 업로드 해주세요.</p>
-					<button style={{ width: "20%", margin: "0 auto" }}>업로드</button>
+					<button onClick={() => console.log(question)} style={{ width: "20%", margin: "0 auto" }}>업로드</button>
 				</div>
 			</div>
 		</div>
 	);
 }
+
+export default Createquiz;

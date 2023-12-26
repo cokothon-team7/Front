@@ -26,18 +26,16 @@ export default function Main() {
 				style={{
 					display: "flex",
 					flexDirection: "row",
-					padding: "20px",
 				}}
 			>
-				{" "}
 				<div
 					style={{
 						marginTop: "20px",
-						borderRadius: "20px",
-						backgroundColor: "#fff",
-						height: "91px",
 						display: "flex",
-						flexDirection: "column",
+						flexDirection: "row",
+            maxWidth: "600px",
+            minWidth: "320px",
+            flexWrap: "wrap",
 						justifyContent: "center",
 						alignItems: "center", // 수직 가운데 정렬을 위해 추가
 						textAlign: "center",
@@ -46,7 +44,9 @@ export default function Main() {
 					<Box width={166} height={166} />
 					<Box width={166} height={166} />
 					<Box width={166} height={166} />
-					<Box width={166} height={166} />
+					<Box width={166} height={166}>
+            <p> 어쩌라고 </p>
+          </Box>
 				</div>
 			</div>
 			<Footer />
