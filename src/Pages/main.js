@@ -44,9 +44,7 @@ export default function Main() {
 					<Box width={166} height={166} />
 					<Box width={166} height={166} />
 					<Box width={166} height={166} />
-					<Box width={166} height={166}>
-            <p> 어쩌라고 </p>
-          </Box>
+					<Box width={166} height={166} />
 				</div>
 			</div>
 			<Footer />

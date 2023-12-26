@@ -1,10 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Header from "../Components/Header/header";
 import * as style from "./createquiz.css";
 
 const Createquiz = () => {
 	const [category, setCategory] = useState();
 	const [question, setQuestion] = useState();
+	const imageInputRef = useRef(null); // useRef를 사용하여 input 요소에 접근
+
+  const handleImageUpload = () => {
+    // 이미지를 업로드하는 로직을 추가 (여기에서는 콘솔에 이미지 파일명을 출력하는 예시)
+    const uploadedImage = imageInputRef.current.files[0];
+    console.log("Uploaded Image:", uploadedImage);  // 수정 필요
+  };
 	return (
 		<div
 			style={{
@@ -70,7 +77,12 @@ const Createquiz = () => {
 					}}
 				>
 					<p>이미지를 업로드 해주세요.</p>
-					<button onClick={() => console.log(question)} style={{ width: "20%", margin: "0 auto" }}>업로드</button>
+					{/* 파일을 선택하는 input 요소 */}
+          <input type="file" ref={imageInputRef} style={{ display: "none" }} />
+          {/* 업로드 버튼 */}
+          <button onClick={() => imageInputRef.current.click()} style={{ width: "20%", margin: "0 auto" }}>업로드</button>
+          {/* 이미지 업로드 버튼을 누를 때 handleImageUpload 함수 호출 */}
+          <button onClick={handleImageUpload} style={{ width: "20%", margin: "0 auto" }}>이미지 업로드</button>
 				</div>
 			</div>
 		</div>
