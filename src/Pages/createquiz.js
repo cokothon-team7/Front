@@ -31,10 +31,14 @@ const Createquiz = () => {
 			}}
 		>
 			<Header />
-			<div style={{ padding: "20px" }}>
+			<p style={{}}>
+				아래 문제를 만들어 <span style={{ fontWeight: "bold", color: "#5c6ff4" }}>기억의 퍼즐</span>
+				을 생성해주세요
+			</p>
+			<div style={{ padding: "0px 20px 0px 20px" }}>
 				<div
 					style={{
-						margin: "20px",
+						margin: "0px 10px 20px 10px",
 						paddingBottom: "16px",
 						borderRadius: "20px",
 						backgroundColor: "#fff",
@@ -58,7 +62,7 @@ const Createquiz = () => {
 				</div>
 				<div
 					style={{
-						margin: "20px",
+						margin: "0px 10px 20px 10px",
 						paddingBottom: "16px",
 						borderRadius: "20px",
 						backgroundColor: "#fff",
@@ -82,7 +86,7 @@ const Createquiz = () => {
 				</div>
 				<div
 					style={{
-						margin: "20px",
+						margin: "0px 10px 20px 10px",
 						paddingBottom: "16px",
 						borderRadius: "20px",
 						backgroundColor: "#fff",
