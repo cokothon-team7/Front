@@ -26,25 +26,25 @@ export default function Main() {
 				style={{
 					display: "flex",
 					flexDirection: "row",
+					padding: "20px",
 				}}
 			>
 				<div
 					style={{
 						marginTop: "20px",
+						borderRadius: "20px",
+						backgroundColor: "#fff",
+						height: "91px",
 						display: "flex",
-						flexDirection: "row",
-            maxWidth: "600px",
-            minWidth: "320px",
-            flexWrap: "wrap",
+						flexDirection: "column",
 						justifyContent: "center",
 						alignItems: "center", // 수직 가운데 정렬을 위해 추가
 						textAlign: "center",
 					}}
 				>
-					<Box width={166} height={166} />
-					<Box width={166} height={166} />
-					<Box width={166} height={166} />
-					<Box width={166} height={166} />
+					<div style={{ display: "flex", flexWrap: "wrap" }}>
+						<div style={{ flex: "1 1 40%" }}></div>
+					</div>
 				</div>
 			</div>
 			<Footer />
