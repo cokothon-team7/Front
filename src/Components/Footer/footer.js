@@ -1,10 +1,15 @@
 import React from 'react'
 import logo from '../../images/Footer.svg';
+import { useNavigate } from "react-router-dom";
 
-export default function footer(){
+const Footer= () =>{
+  const movePage = useNavigate();
+  function goCreatequiz(){
+    movePage('../createquiz');
+  }
   return(
-    <a href = '/'> 
-      <img src ={logo} alt ="logo" />
-    </a>
+    <img src ={logo} alt ="logo" onClick={goCreatequiz}/>
   )
 }
+
+export default Footer;

@@ -3,10 +3,11 @@ import Header from "../Components/Header/header";
 import axios from "axios";
 
 const Createquiz = () => {
+  const imageRef = useRef();
+
   const [category, setCategory] = useState();
   const [question, setQuestion] = useState();
   const [puzzleUrl, setPuzzleUrl] = useState();
-  const imageRef = useRef();
 
   async function handleSubmit() {
     if (!category || !question || !imageRef.current.files[0]) {
@@ -49,14 +50,22 @@ const Createquiz = () => {
         flexWrap: "wrap",
         margin: "0 auto",
         overscrollBehaviorY: "contain",
-        backgroundColor: "#D9D9D9",
+        backgroundColor: "#fff",
       }}
     >
       <Header />
-      <div style={{ padding: "20px" }}>
+      <p style={{}}>
+        아래 문제를 만들어{" "}
+        <span style={{ fontWeight: "bold", color: "#5c6ff4" }}>
+          기억의 퍼즐
+        </span>
+        을 생성해주세요
+      </p>
+      <div style={{ padding: "0px 20px 0px 20px" }}>
         <div
           style={{
-            marginTop: "20px",
+            margin: "0px 10px 20px 10px",
+            paddingBottom: "16px",
             borderRadius: "20px",
             backgroundColor: "#fff",
             height: "91px",
@@ -65,9 +74,11 @@ const Createquiz = () => {
             justifyContent: "center",
             alignItems: "center", // 수직 가운데 정렬을 위해 추가
             textAlign: "center",
+            border: "solid lightGray",
+            boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.25)",
           }}
         >
-          <p>문제의 카테고리를 입력해주세요.</p>
+          <p>🤨 문제의 카테고리를 입력해주세요.</p>
           <input
             onChange={(e) => setCategory(e.target.value)}
             value={category}
@@ -77,7 +88,8 @@ const Createquiz = () => {
         </div>
         <div
           style={{
-            marginTop: "20px",
+            margin: "0px 10px 20px 10px",
+            paddingBottom: "16px",
             borderRadius: "20px",
             backgroundColor: "#fff",
             height: "91px",
@@ -86,9 +98,11 @@ const Createquiz = () => {
             justifyContent: "center",
             alignItems: "center", // 수직 가운데 정렬을 위해 추가
             textAlign: "center",
+            border: "solid lightGray",
+            boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.25)",
           }}
         >
-          <p>문제의 힌트를 입력해주세요.</p>
+          <p>🌟 문제의 힌트를 입력해주세요.</p>
           <input
             onChange={(e) => setQuestion(e.target.value)}
             value={question}
@@ -98,26 +112,31 @@ const Createquiz = () => {
         </div>
         <div
           style={{
-            marginTop: "20px",
+            margin: "0px 10px 20px 10px",
+            paddingBottom: "16px",
             borderRadius: "20px",
             backgroundColor: "#fff",
-            height: "91px",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
-            alignItems: "center", // 수직 가운데 정렬을 위해 추가
+            alignItems: "center",
             textAlign: "center",
+            border: "solid lightGray",
+            boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.25)",
           }}
         >
-          <p>이미지를 업로드 해주세요.</p>
-          <input ref={imageRef} type="file" accept="image/*" />
+          <p>🤗 이미지를 업로드 해주세요.</p>
+          {/* 파일을 선택하는 input 요소 */}
+          <input type="file" ref={imageRef} />
+          {/* 업로드 버튼과 이미지 업로드 버튼을 나란히 정렬 */}
         </div>
-        <button onClick={handleSubmit} disabled={puzzleUrl}>
-          제출
+        <button onClick={handleSubmit} style={{ width: "48%" }}>
+          업로드
         </button>
         {puzzleUrl && (
           <p>
-            공유 URL: <a>{puzzleUrl}</a>
+            <strong>공유 URL: </strong>
+            {puzzleUrl}
           </p>
         )}
       </div>
