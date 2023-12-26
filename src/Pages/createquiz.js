@@ -49,7 +49,7 @@ const Createquiz = () => {
 						alignItems: "center", // 수직 가운데 정렬을 위해 추가
 						textAlign: "center",
 						border: "solid lightGray",
-						boxShadow: "2px 2px 2px 2px lightGray",
+						boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.25)",
 					}}
 				>
 					<p>🤨 문제의 카테고리를 입력해주세요.</p>
@@ -73,7 +73,7 @@ const Createquiz = () => {
 						alignItems: "center", // 수직 가운데 정렬을 위해 추가
 						textAlign: "center",
 						border: "solid lightGray",
-						boxShadow: "2px 2px 2px 2px lightGray",
+						boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.25)",
 					}}
 				>
 					<p>🌟 문제의 힌트를 입력해주세요.</p>
@@ -97,7 +97,7 @@ const Createquiz = () => {
 						alignItems: "center",
 						textAlign: "center",
 						border: "solid lightGray",
-						boxShadow: "2px 2px 2px 2px lightGray",
+						boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.25)",
 					}}
 				>
 					<p>🤗 이미지를 업로드 해주세요.</p>
