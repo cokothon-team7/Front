@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import Header from "../Components/Header/header";
-import * as style from "./createquiz.css";
+// import * as style from "./createquiz.css";
 
 const Createquiz = () => {
 	const [category, setCategory] = useState();
@@ -12,6 +12,7 @@ const Createquiz = () => {
 		const uploadedImage = imageInputRef.current.files[0];
 		console.log("Uploaded Image:", uploadedImage); // 수정 필요
 	};
+
 	return (
 		<div
 			style={{
@@ -89,7 +90,7 @@ const Createquiz = () => {
 						display: "flex",
 						flexDirection: "column",
 						justifyContent: "center",
-						alignItems: "center", // 수직 가운데 정렬을 위해 추가
+						alignItems: "center",
 						textAlign: "center",
 						border: "solid lightGray",
 						boxShadow: "2px 2px 2px 2px lightGray",
@@ -97,18 +98,21 @@ const Createquiz = () => {
 				>
 					<p>🤗 이미지를 업로드 해주세요.</p>
 					{/* 파일을 선택하는 input 요소 */}
-					<input type="file" ref={imageInputRef} style={{ display: "none" }} />
-					{/* 업로드 버튼 */}
-					<button
-						onClick={() => imageInputRef.current.click()}
-						style={{ width: "20%", margin: "0 auto" }}
-					>
-						업로드
-					</button>
-					{/* 이미지 업로드 버튼을 누를 때 handleImageUpload 함수 호출 */}
-					<button onClick={handleImageUpload} style={{ width: "20%", margin: "0 auto" }}>
-						이미지 업로드
-					</button>
+					<input
+						type="file"
+						ref={imageInputRef}
+						style={{ display: "none", flexDirection: "row" }}
+					/>
+					{/* 업로드 버튼과 이미지 업로드 버튼을 나란히 정렬 */}
+					<div style={{ display: "flex", justifyContent: "space-between", width: "60%" }}>
+						<button onClick={() => imageInputRef.current.click()} style={{ width: "48%" }}>
+							업로드
+						</button>
+						{/* 이미지 업로드 버튼을 누를 때 handleImageUpload 함수 호출 */}
+						<button onClick={handleImageUpload} style={{ width: "48%", whiteSpace: "nowrap" }}>
+							이미지 업로드
+						</button>
+					</div>
 				</div>
 			</div>
 		</div>
