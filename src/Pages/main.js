@@ -30,7 +30,7 @@ export default function Main() {
 			>
 				<div
 					style={{
-						marginTop: "20px",
+						// marginTop: "20px",
 						display: "flex",
 						flexDirection: "row",
 						maxWidth: "600px",
@@ -41,6 +41,10 @@ export default function Main() {
 						textAlign: "center",
 					}}
 				>
+					<p style={{ padding: "10px" }}>
+						아래 카드를 선택해{" "}
+						<span style={{ fontWeight: "bold", color: "#5c6ff4" }}>기억의 퍼즐</span>을 만들어주세요
+					</p>
 					<Box width={166} height={166} />
 					<Box width={166} height={166} />
 					<Box width={166} height={166} />

@@ -31,9 +31,9 @@ const Createquiz = () => {
 			}}
 		>
 			<Header />
-			<p style={{}}>
-				아래 문제를 만들어 <span style={{ fontWeight: "bold", color: "#5c6ff4" }}>기억의 퍼즐</span>
-				을 생성해주세요
+			<p style={{ padding: "10px" }}>
+				아래 문항을 채워 <span style={{ fontWeight: "bold", color: "#5c6ff4" }}>퍼즐 문제</span>를
+				만들어주세요!
 			</p>
 			<div style={{ padding: "0px 20px 0px 20px" }}>
 				<div
