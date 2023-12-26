@@ -1,12 +1,16 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./solve-puzzle.css";
+import axios from "axios";
 
 export default function SolvePuzzle() {
   const { puzzleId } = useParams();
 
   const [puzzle, setPuzzle] = useState([]);
-  const [emptyIndex, setEmptyIndex] = useState(0);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  const [hint, setHint] = useState();
+  const [category, setCategory] = useState();
 
   useEffect(() => {
     initializePuzzle();
@@ -22,65 +26,92 @@ export default function SolvePuzzle() {
   };
 
   const initializePuzzle = () => {
+    const infoUrl = `/api/puzzles/${puzzleId}`; // 이미지 URL을 업데이트하세요.
+    axios.get(infoUrl).then((res) => {
+      setHint(res.data.hint);
+      setCategory(res.data.category);
+    });
     // 이미지 URL 또는 이미지 파일을 사용할 수 있습니다.
     const imageUrl = `/api/puzzles/${puzzleId}/image`; // 이미지 URL을 업데이트하세요.
 
     const pieces = [];
-    for (let i = 0; i < 16; i++) {
+    for (let i = 0; i < 9; i++) {
       pieces.push({
         id: i,
         style: {
           backgroundImage: `url(${imageUrl})`,
-          backgroundPosition: `-${(i % 4) * 100}px -${
-            Math.floor(i / 4) * 100
+          backgroundPosition: `-${(i % 3) * 100}px -${
+            Math.floor(i / 3) * 100
           }px`,
         },
       });
     }
 
     // 마지막 조각을 빈 조각으로 설정
-    pieces[15].style.backgroundImage = "none";
-
-    const shuffledArr = shufflePuzzle(pieces);
+    // pieces[8].style.backgroundImage = "none";
+    var shuffledArr = shufflePuzzle(pieces);
 
     setPuzzle(shuffledArr);
-
-    const emptyIndex = shuffledArr.findIndex((piece) => piece.id === 15);
-    setEmptyIndex(emptyIndex);
   };
 
   const handlePieceClick = (clickedIndex) => {
     // 클릭한 조각과 빈 조각을 교환
-    if (isAdjacent(clickedIndex, emptyIndex)) {
-      const updatedPuzzle = [...puzzle];
-      [updatedPuzzle[clickedIndex], updatedPuzzle[emptyIndex]] = [
-        updatedPuzzle[emptyIndex],
-        updatedPuzzle[clickedIndex],
-      ];
-      setPuzzle(updatedPuzzle);
-      setEmptyIndex(clickedIndex);
+
+    // 선택이 안됨
+    if (selectedIndex == -1) {
+      setSelectedIndex(clickedIndex);
+    } else if (selectedIndex == clickedIndex) {
+      setSelectedIndex(-1);
+    } else {
+      swapPuzzle(clickedIndex, selectedIndex);
+      setSelectedIndex(-1);
+    }
+
+    // 퍼즐이 완성되었는지 확인
+    const isFinished = puzzle.every((piece, index) => {
+      return piece.id === index;
+    });
+
+    if (isFinished) {
+      alert("축하합니다!");
     }
   };
 
-  const isAdjacent = (index1, index2) => {
-    // 두 조각이 서로 인접한지 확인
-    const diff = Math.abs(index1 - index2);
-    return (
-      (diff === 1 && Math.floor(index1 / 4) === Math.floor(index2 / 4)) ||
-      diff === 4
-    );
+  const swapPuzzle = (index1, index2) => {
+    const updatedPuzzle = [...puzzle];
+    [updatedPuzzle[index1], updatedPuzzle[index2]] = [
+      updatedPuzzle[index2],
+      updatedPuzzle[index1],
+    ];
+    setPuzzle(updatedPuzzle);
   };
 
   return (
-    <div className="slide-puzzle">
-      {puzzle.map((piece, index) => (
-        <div
-          key={piece.id}
-          className="puzzle-piece"
-          style={piece.style}
-          onClick={() => handlePieceClick(index)}
-        />
-      ))}
+    <div className="puzzle-container">
+      <div className="slide-puzzle">
+        {puzzle.map((piece, index) => (
+          <div
+            key={piece.id}
+            className="puzzle-piece"
+            style={piece.style}
+            onClick={() => handlePieceClick(index)}
+          />
+        ))}
+      </div>
+      <div className="puzzle-info-container">
+        <div className="puzzle-info">
+          <div className="category">
+            <span>카테고리: </span>
+            {category}
+          </div>
+        </div>
+        <div className="puzzle-info">
+          <div className="hint">
+            <span>힌트: </span>
+            {hint}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

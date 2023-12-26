@@ -17,7 +17,7 @@ const Createquiz = () => {
     const formData = new FormData();
     formData.append(
       "json",
-      new Blob([JSON.stringify({ hint: question, category })], {
+      new Blob([JSON.stringify({ hint: question, category: category })], {
         type: "application/json",
       })
     );
@@ -31,7 +31,6 @@ const Createquiz = () => {
 
     if (res.status === 200) {
       const { puzzleId } = res.data;
-      console.log(res.data);
       setPuzzleUrl(`http://localhost:3000/solve/${puzzleId}`);
     }
   }
@@ -116,7 +115,11 @@ const Createquiz = () => {
         <button onClick={handleSubmit} disabled={puzzleUrl}>
           제출
         </button>
-        {puzzleUrl && <p>{puzzleUrl}</p>}
+        {puzzleUrl && (
+          <p>
+            공유 URL: <a>{puzzleUrl}</a>
+          </p>
+        )}
       </div>
     </div>
   );
