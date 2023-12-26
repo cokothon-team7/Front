@@ -51,6 +51,7 @@ const Login = () => {
 					border: "none",
 					marginBottom: "20px",
 				}}
+        type="password"
 			/>
 			<button
 				width={380}
