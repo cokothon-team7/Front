@@ -3,63 +3,63 @@ import Header from "../Components/Header/header";
 import axios from "axios";
 
 const Createquiz = () => {
-  const imageRef = useRef();
+	const imageRef = useRef();
+	const imageInputRef = useRef();
 
-  const [category, setCategory] = useState();
-  const [question, setQuestion] = useState();
-  const [puzzleUrl, setPuzzleUrl] = useState();
+	const [category, setCategory] = useState();
+	const [question, setQuestion] = useState();
+	const [puzzleUrl, setPuzzleUrl] = useState();
 
+	async function handleSubmit() {
+		if (!category || !question || !imageRef.current.files[0]) {
+			alert("모든 항목을 입력해주세요.");
+			return;
+		}
 
-  async function handleSubmit() {
-    if (!category || !question || !imageRef.current.files[0]) {
-      alert("모든 항목을 입력해주세요.");
-      return;
-    }
+		const formData = new FormData();
+		formData.append(
+			"json",
+			new Blob([JSON.stringify({ hint: question, category: category })], {
+				type: "application/json",
+			})
+		);
+		formData.append("image", imageRef.current.files[0]);
 
-    const formData = new FormData();
-    formData.append(
-      "json",
-      new Blob([JSON.stringify({ hint: question, category: category })], {
-        type: "application/json",
-      })
-    );
-    formData.append("image", imageRef.current.files[0]);
+		const res = await axios.post("/api/puzzles", formData, {
+			headers: {
+				"Content-Type": "multipart/form-data",
+			},
+		});
 
-    const res = await axios.post("/api/puzzles", formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
+		if (res.status === 200) {
+			const { puzzleId } = res.data;
+			setPuzzleUrl(`http://localhost:3000/solve/${puzzleId}`);
+		}
+	}
 
-    if (res.status === 200) {
-      const { puzzleId } = res.data;
-      setPuzzleUrl(`http://localhost:3000/solve/${puzzleId}`);
-    }
-  }
-
-  return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        flex: "1",
-        width: "100%",
-        maxWidth: "600px",
-        minWidth: "320px",
-        minHeight: "100vh",
-        height: "100%",
-        flexWrap: "wrap",
-        margin: "0 auto",
-        overscrollBehaviorY: "contain",
-        backgroundColor: "#fff",
-      }}
-    >
-      <Header />
-      <p style={{ padding: "10px" }}>
+	return (
+		<div
+			style={{
+				display: "flex",
+				flexDirection: "column",
+				flex: "1",
+				width: "100%",
+				maxWidth: "600px",
+				minWidth: "320px",
+				minHeight: "100vh",
+				height: "100%",
+				flexWrap: "wrap",
+				margin: "0 auto",
+				overscrollBehaviorY: "contain",
+				backgroundColor: "#fff",
+			}}
+		>
+			<Header />
+			<p style={{ padding: "10px" }}>
 				아래 문항을 채워 <span style={{ fontWeight: "bold", color: "#5c6ff4" }}>퍼즐 문제</span>를
 				만들어주세요!
 			</p>
-     <div style={{ padding: "0px 20px 0px 20px" }}>
+			<div style={{ padding: "0px 20px 0px 20px" }}>
 				<div
 					style={{
 						margin: "0px 10px 20px 10px",
@@ -137,19 +137,20 @@ const Createquiz = () => {
 							업로드
 						</button>
 						{/* 이미지 업로드 버튼을 누를 때 handleImageUpload 함수 호출 */}
-						<button onClick={handleImageUpload} style={{ width: "48%", whiteSpace: "nowrap" }}>
+						<button onClick={handleSubmit} style={{ width: "48%", whiteSpace: "nowrap" }}>
 							이미지 업로드
 						</button>
-        {puzzleUrl && (
-          <p>
-            <strong>공유 URL: </strong>
-            {puzzleUrl}
-          </p>
-        )}
-      </div>
-    </div>
-  );
-
+						{puzzleUrl && (
+							<p>
+								<strong>공유 URL: </strong>
+								{puzzleUrl}
+							</p>
+						)}
+					</div>
+				</div>
+			</div>
+		</div>
+	);
 };
 
 export default Createquiz;
