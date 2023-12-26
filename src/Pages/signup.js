@@ -67,6 +67,7 @@ const Signup = () => {
 					marginBottom: "20px",
 					fontSize: "18px",
 				}}
+        type="password"
 			/>
 			<button
 				width={380}
