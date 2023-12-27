@@ -43,3 +43,7 @@
 .puzzle-info span {
   font-weight: bold;
 }
+
+.selected {
+  border: 3px dashed blue;
+}

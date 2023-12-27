@@ -11,6 +11,7 @@ export default function SolvePuzzle() {
 
   const [hint, setHint] = useState();
   const [category, setCategory] = useState();
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     initializePuzzle();
@@ -28,8 +29,10 @@ export default function SolvePuzzle() {
   const initializePuzzle = () => {
     const infoUrl = `/api/puzzles/${puzzleId}`; // 이미지 URL을 업데이트하세요.
     axios.get(infoUrl).then((res) => {
-      setHint(res.data.hint);
-      setCategory(res.data.category);
+      const { hint, category, message } = res.data;
+      setHint(hint);
+      setCategory(category);
+      setMessage(message);
     });
     // 이미지 URL 또는 이미지 파일을 사용할 수 있습니다.
     const imageUrl = `/api/puzzles/${puzzleId}/image`; // 이미지 URL을 업데이트하세요.
@@ -73,7 +76,7 @@ export default function SolvePuzzle() {
     });
 
     if (isFinished) {
-      alert("축하합니다!");
+      alert(message);
     }
   };
 
@@ -92,7 +95,9 @@ export default function SolvePuzzle() {
         {puzzle.map((piece, index) => (
           <div
             key={piece.id}
-            className="puzzle-piece"
+            className={`puzzle-piece ${
+              index === selectedIndex ? "selected" : ""
+            }`}
             style={piece.style}
             onClick={() => handlePieceClick(index)}
           />

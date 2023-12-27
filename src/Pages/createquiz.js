@@ -8,10 +8,11 @@ const Createquiz = () => {
 
   const [category, setCategory] = useState();
   const [question, setQuestion] = useState();
+  const [message, setMessage] = useState("");
   const [puzzleUrl, setPuzzleUrl] = useState();
 
   async function handleSubmit() {
-    if (!category || !question || !imageRef.current.files[0]) {
+    if (!category || !question || !message || !imageRef.current.files[0]) {
       alert("모든 항목을 입력해주세요.");
       return;
     }
@@ -19,9 +20,18 @@ const Createquiz = () => {
     const formData = new FormData();
     formData.append(
       "json",
-      new Blob([JSON.stringify({ hint: question, category: category })], {
-        type: "application/json",
-      })
+      new Blob(
+        [
+          JSON.stringify({
+            hint: question,
+            category: category,
+            message: message,
+          }),
+        ],
+        {
+          type: "application/json",
+        }
+      )
     );
     formData.append("image", imageRef.current.files[0]);
 
@@ -64,7 +74,7 @@ const Createquiz = () => {
         <span style={{ fontWeight: "bold", color: "#5c6ff4" }}>퍼즐 문제</span>
         를 만들어주세요!
       </p>
-      <div style={{ padding: "0px 20px 0px 20px" }}>
+      <div style={{ padding: "30px 20px" }}>
         <div
           style={{
             margin: "0px 10px 20px 10px",
@@ -111,6 +121,29 @@ const Createquiz = () => {
             value={question}
             placeholder="힌트 입력"
             style={{ width: "60%", margin: "0 auto" }}
+          />
+        </div>
+        <div
+          style={{
+            margin: "0px 10px 20px 10px",
+            paddingBottom: "16px",
+            borderRadius: "20px",
+            backgroundColor: "#fff",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center", // 수직 가운데 정렬을 위해 추가
+            textAlign: "center",
+            border: "solid lightGray",
+            boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.25)",
+          }}
+        >
+          <p>📭 문제를 맞췄을 때 보여주고 싶은 메세지를 적어 주세요!</p>
+          <textarea
+            onChange={(e) => setMessage(e.target.value)}
+            value={message}
+            placeholder="힌트 입력"
+            style={{ width: "60%", height: "100px", margin: "0 auto" }}
           />
         </div>
         <div
