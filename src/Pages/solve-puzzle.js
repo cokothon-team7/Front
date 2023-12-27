@@ -7,7 +7,7 @@ export default function SolvePuzzle() {
   const { puzzleId } = useParams();
 
   const [puzzle, setPuzzle] = useState([]);
-  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [selectedIndex, setSelectedIndex] = useState(-1);
 
   const [hint, setHint] = useState();
   const [category, setCategory] = useState();

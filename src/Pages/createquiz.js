@@ -142,7 +142,7 @@ const Createquiz = () => {
           <textarea
             onChange={(e) => setMessage(e.target.value)}
             value={message}
-            placeholder="힌트 입력"
+            placeholder="메세지 입력"
             style={{ width: "60%", height: "100px", margin: "0 auto" }}
           />
         </div>
