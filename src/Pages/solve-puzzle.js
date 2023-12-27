@@ -1,9 +1,9 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./solve-puzzle.css";
 import axios from "axios";
 
-export default function SolvePuzzle() {
+const SolvePuzzle = () => {
   const { puzzleId } = useParams();
 
   const [puzzle, setPuzzle] = useState([]);
@@ -12,6 +12,8 @@ export default function SolvePuzzle() {
   const [hint, setHint] = useState();
   const [category, setCategory] = useState();
   const [message, setMessage] = useState("");
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     initializePuzzle();
@@ -76,7 +78,7 @@ export default function SolvePuzzle() {
     });
 
     if (isFinished) {
-      alert(message);
+      navigate("/celebrate", { state: { message: message } });
     }
   };
 
@@ -119,4 +121,5 @@ export default function SolvePuzzle() {
       </div>
     </div>
   );
-}
+};
+export default SolvePuzzle;

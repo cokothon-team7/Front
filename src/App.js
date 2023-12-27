@@ -5,6 +5,7 @@ import Createquiz from "./Pages/createquiz";
 import Initpage from "./Pages/initpage";
 import Login from "./Pages/login";
 import Signup from "./Pages/signup";
+import Celebrate from "./Pages/celebrate";
 import "./App.css";
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           <Route path="/main" element={<Main />} />
           <Route path="/createquiz" element={<Createquiz />} />
           <Route path="/solve/:puzzleId" element={<SolvePuzzle />} />
+          <Route path="/celebrate" element={<Celebrate />} />
         </Routes>
       </div>
     </BrowserRouter>
