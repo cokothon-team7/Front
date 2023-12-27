@@ -33,14 +33,14 @@ export default function Main() {
       <div
         style={{
           display: "flex",
-          flexDirection: "row",
+          flexDirection: "column",
         }}
       >
         <div
           style={{
             // marginTop: "20px",
             display: "flex",
-            flexDirection: "row",
+            flexDirection: "column",
             maxWidth: "600px",
             minWidth: "320px",
             flexWrap: "wrap",
@@ -56,9 +56,17 @@ export default function Main() {
             </span>
             을 만들어주세요
           </p>
-          {puzzles.map((puzzle) => (
-            <Box width={166} height={166} puzzle={puzzle} />
-          ))}
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              flexDirection: "row",
+            }}
+          >
+            {puzzles.map((puzzle) => (
+              <Box width={166} height={166} puzzle={puzzle} />
+            ))}
+          </div>
         </div>
       </div>
       <Footer />
